@@ -1,20 +1,24 @@
 const router = require('express').Router();
-// const {
-//   getUsers,
-//   getSingleUser,
-//   createUser,
-// } = require('../../controllers/userController');
+const {
+  getUsers,
+  getUserById,
+  createUser,
+} = require('../../controllers/userController');
 
 // /api/users
-// router.route('/').get(getUsers).post(createUser);
-
-// setting up test route to see if server is working
-// /api/users
-router.route('/').get((req, res) => {
-  res.send('Hello World');
-});
+router.route('/')
+  // get all users
+  .get(getUsers)
+  // create a new user
+  .post(createUser);
 
 // /api/users/:userId
-// router.route('/:userId').get(getSingleUser);
+router.route('/:userId')
+  // get user by id
+  .get(getUserById)
+  // delete user by id
+  .delete(deleteUser)
+  // update user by id
+  .put(updateUser);
 
 module.exports = router;
