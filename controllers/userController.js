@@ -3,7 +3,17 @@ const User = require('../models/User');
 // Get all users
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find()
+            // populating the thoughts and friends properties of the user so that we can see the actual thoughts and friends, not just the IDs
+            .populate({
+                path: 'thoughts',
+                select: '-__v'
+            })
+            .populate({
+                path: 'friends',
+                select: '-__v'
+            })
+            .select('-__v');
         if (!users) {
             return res.status(404).json({ error: 'No users found' });
         }
