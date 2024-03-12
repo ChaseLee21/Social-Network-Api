@@ -85,10 +85,54 @@ const deleteUser = async (req, res) => {
     }
 };
 
+// add friend
+const addFriend = async (req, res) => {
+    try {
+        const friend = await User.findById(req.params.friendId);
+
+        if (!friend) {
+            return res.status(404).json({ error: 'Friend not found' });
+        }
+
+        const user = await User.findByIdAndUpdate(req.params.id, 
+            { $push: { friends: req.params.friendId } }, 
+            { new: true });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(user);
+
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+}
+
+
+// remove friend
+const removeFriend = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, 
+            { $pull: { friends: req.params.friendId } }, 
+            { new: true });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json(user);
+
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+}
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
     updateUser,
     deleteUser,
+    addFriend,
+    removeFriend
 };
