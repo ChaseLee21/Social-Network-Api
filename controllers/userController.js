@@ -4,9 +4,14 @@ const User = require('../models/User');
 const getUsers = async (req, res) => {
     try {
         const users = await User.find();
+        if (!users) {
+            return res.status(404).json({ error: 'No users found' });
+        }
+        console.log(users);
         res.json(users);
     } catch (error) {
-        res.status(500).json({ error: 'Server error' });
+        console.log(error);
+        res.status(500).json({ error });
     }
 };
 
