@@ -11,7 +11,7 @@ const getAllThoughts = (req, res) => {
         });
 }
 
-    // Get a single thought by id
+// Get a single thought by id
 const getThoughtById = (req, res) => {
     Thought.findOne({ _id: req.params.id })
         .then((thought) => {
@@ -26,7 +26,7 @@ const getThoughtById = (req, res) => {
         });
 }
 
-    // Create a new thought
+// Create a new thought
 const createThought = (req, res) => {
     Thought.create(req.body)
         .then((thought) => {
@@ -53,7 +53,7 @@ const createThought = (req, res) => {
         });
 }
 
-    // Update a thought by id
+// Update a thought by id
 const updateThought = (req, res) => {
     Thought.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
         .then((thought) => {
@@ -68,7 +68,7 @@ const updateThought = (req, res) => {
         });
 }
 
-    // Delete a thought by id
+// Delete a thought by id
 const deleteThought = (req, res) => {
     Thought.findOneAndDelete({ _id: req.params.id })
         .then((thought) => {
@@ -83,11 +83,51 @@ const deleteThought = (req, res) => {
         });
 };
 
+// Add a reaction to a thought
+const addReaction = (req, res) => {
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $push: { reactions: req.body } },
+        { new: true }
+    )
+        .then((thought) => {
+            if (!thought) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+            }
+            res.json(thought);
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+}
+
+// Remove a reaction from a thought
+const removeReaction = (req, res) => {
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { new: true }
+    )
+        .then((thought) => {
+            if (!thought) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+            }
+            res.json(thought);
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+}
+
 module.exports = 
 {
     getAllThoughts,
     getThoughtById,
     createThought,
     updateThought,
-    deleteThought
+    deleteThought,
+    addReaction,
+    removeReaction
 };
