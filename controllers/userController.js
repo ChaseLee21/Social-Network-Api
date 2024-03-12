@@ -26,7 +26,16 @@ const getUsers = async (req, res) => {
 // Get a single user by ID
 const getUserById = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(req.params.id)
+            .populate({
+                path: 'thoughts',
+                select: '-__v'
+            })
+            .populate({
+                path: 'friends',
+                select: '-__v'
+            })
+            .select('-__v');
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
