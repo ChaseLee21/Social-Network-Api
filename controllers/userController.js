@@ -7,10 +7,8 @@ const getUsers = async (req, res) => {
         if (!users) {
             return res.status(404).json({ error: 'No users found' });
         }
-        console.log(users);
         res.json(users);
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error });
     }
 };
