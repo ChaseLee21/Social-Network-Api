@@ -25,10 +25,13 @@ router.route('/:id')
   // update thought by id
   .put(updateThought);
 
-// /api/thoughts/:id/reactions/:reactionId
+// /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtId/reactions')
   // add reaction to thought
-  .post(addReaction)
+  .post(addReaction);
+
+// /api/thoughts/:id/reactions/:reactionId
+router.route('/:thoughtId/reactions/:reactionId')
   // remove reaction from thought
   .delete(removeReaction);
 
