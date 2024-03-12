@@ -15,7 +15,7 @@ router.route('/')
   .post(createUser);
 
 // /api/users/:userId
-router.route('/:userId')
+router.route('/:id')
   // get user by id
   .get(getUserById)
   // delete user by id
