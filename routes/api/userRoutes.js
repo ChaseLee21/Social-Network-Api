@@ -23,4 +23,8 @@ router.route('/:id')
   // update user by id
   .put(updateUser);
 
+router.route('/:id/friends/:friendId')
+  .post(addFriend)
+  .delete(removeFriend);
+
 module.exports = router;
