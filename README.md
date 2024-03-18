@@ -1,7 +1,7 @@
 # Social Network Api Example
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
   ## Description
-  This project uses mongoose and express.js packages to create an api. The data being stored includes users and thoughts. Using the api you can create, read, edit, and delete both users and thoughts. One user can have many thoughts and a thought can have one user. There is also functionality where users can 'react' to thought with there own thought creating a thread. Users can also friend another user. There is no front end for this project. The idea of this project was to create an example api that could be used in a fullstack social network application. To test all of these routes I use an application called Insomnia and below there is a demonstration video showing how to start the server and use each route/endpoint.
+  This project uses mongoose and express.js packages to create an api. The data being stored includes users and thoughts. Using the api you can create, read, edit, and delete both users and thoughts. One user can have many thoughts and a thought can have one user. There is also functionality where users can 'react' to thoughts with their own thought creating a type of thread. Users can also friend another user. There is no front end for this project. The idea of this project was to create an example api that could be used in a fullstack social network application. To test all of these routes I use an application called Insomnia and below there is a demonstration video showing how to start the server and use each route/endpoint.
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
