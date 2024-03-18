@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Thought = require('../models/Thought');
 
 // Get all users
 const getUsers = async (req, res) => {
@@ -73,12 +74,14 @@ const updateUser = async (req, res) => {
 // Delete a user by ID
 const deleteUser = async (req, res) => {
     try {
-        const user = await User.findByIdAndDelete(req.params.id);
+        const user = await User.findById(req.params.id);
+        console.log(user);
+        await Thought.deleteMany({ username: user.username });
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
+        await User.deleteOne({username: user.username });
 
-        await Thought.deleteMany({ username: user.username });
         res.json({ message: 'User deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
