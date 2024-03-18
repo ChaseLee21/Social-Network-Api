@@ -9,9 +9,12 @@
   - [Tests](#tests)
   - [License](#license)
   ## Installation
-  To install the application clone the code on your machine. Once cloned open the repository in a terminal and run the command npm install to install all dependencies required to run the application. Then, run node server.js to start the server. From there the api should be accessible at localhost:3001
+  To install the application clone the code on your machine. Once cloned open the repository in a terminal and run the command npm install to install all dependencies required to run the application. Since this application uses mongoose you will need to have mongoDB installed on your maching. Once mongoDB is installed you can use MongoDB compass to create a database called socialNetworkApi. If you are required to create a collection just create a test one called test and the application will create the rest of the collections needed for you. After the db is created run node server.js in the terminal we opened earlier to start the server. From there the api should be accessible at localhost:3001 and use insomnia to test the routes.
   ## Usage
   The following video shows how to start the application and use Insomnia to use each route.
+
+  https://drive.google.com/file/d/1P5P0UGtThCpoft0UOY2Y5RlqbxU0FLaX/view
+
   ## Contribution
   For this project I worked alone.
   ## Tests
